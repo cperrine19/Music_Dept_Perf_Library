@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
 !ENTRY org.eclipse.m2e.logback.appender 4 0 2022-06-16 14:24:42.272
 !MESSAGE Can't write workspace state
 !STACK 0
@@ -817,3 +818,20 @@ java.lang.NullPointerException: Cannot invoke "java.net.URI.getScheme()" because
 
 !ENTRY org.eclipse.ui 2 2 2022-06-16 14:25:37.502
 !MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
+=======
+!ENTRY org.eclipse.core.resources 4 568 2022-06-16 09:46:36.453
+!MESSAGE Could not write workspace metadata '/Users/chelseaperrine/Promineo/Music_Dept_Perf_Library/.metadata/.plugins/org.eclipse.core.resources/0.snap'.
+!STACK 0
+java.io.FileNotFoundException: /Users/chelseaperrine/Promineo/Music_Dept_Perf_Library/.metadata/.plugins/org.eclipse.core.resources/0.snap (No such file or directory)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:48)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:44)
+	at org.eclipse.core.internal.resources.SaveManager.snapTree(SaveManager.java:1474)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1198)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1143)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:55)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+>>>>>>> Stashed changes
