@@ -10,5 +10,5 @@
 <system systemId="http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" uri="file:///Applications/SpringToolSuite4.app/Contents/Eclipse/configuration/org.eclipse.osgi/340/0/.cp/xsd/archetype-descriptor-1.0.0.xsd"/>
 <uri name="http://www.w3.org/2001/XMLSchema" uri="file:///Applications/SpringToolSuite4.app/Contents/Eclipse/configuration/org.eclipse.osgi/493/0/.cp/cache/www.w3.org/2001/XMLSchema.xsd"/>
 <system systemId="http://www.w3.org/2001/xml.xsd" uri="file:///Applications/SpringToolSuite4.app/Contents/Eclipse/configuration/org.eclipse.osgi/493/0/.cp/cache/www.w3.org/2001/xml.xsd"/>
-<public publicId="-//LOG4J//DTD LOG4J//EN" uri="file:///Applications/SpringToolSuite4.app/Contents/Eclipse/configuration/org.eclipse.osgi/575/0/.cp/dtd/log4j-1.2.dtd"/>
+<public publicId="-//LOG4J//DTD LOG4J//EN" uri="file:///Applications/SpringToolSuite4.app/Contents/Eclipse/configuration/org.eclipse.osgi/819/0/.cp/dtd/log4j-1.2.dtd"/>
 </catalog>
