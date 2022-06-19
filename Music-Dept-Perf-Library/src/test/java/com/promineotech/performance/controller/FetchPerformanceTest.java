@@ -38,7 +38,7 @@ class FetchPerformanceTest {
 	void testThatPerformancesAreReturnedWhenADateIsSupplied() {
 		// Given: a valid date and URI
 		String date = "2020-01-11";
-		String uri = String.format("http://localhost:%d/music?model=%s", serverPort, date);
+		String uri = String.format("http://localhost:%d/music?date=%s", serverPort, date);
 		
 		// When: a connection is made to the URI
 		ResponseEntity<List<Performances>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
