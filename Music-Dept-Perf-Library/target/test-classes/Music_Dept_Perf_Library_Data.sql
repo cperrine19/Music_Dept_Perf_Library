@@ -18,7 +18,21 @@ INSERT INTO song_type (performance_type) VALUES ('vocal mixed chorus');
 
 INSERT INTO performer (artist_name) VALUES ('JLADYMAN');
 INSERT INTO performer (artist_name) VALUES ('CPERRINE');
-INSERT INTO performer (artist_name) VALUES ('MADEUP SCHOOL CHORUS');
+INSERT INTO performer (artist_name) VALUES ('MADEUP SCHOOL CHORUS');.
+
+INSERT INTO performances (date) VALUES ("12-12-2012");
+INSERT INTO performances (date) VALUES ("01-12-2011");
+INSERT INTO performances (date) VALUES ("02-12-2013");
+
+INSERT INTO song_type (performance_type) VALUES ("FluteSolo");
+INSERT INTO song_type (performance_type) VALUES ("HornSolo");
+INSERT INTO song_type (performance_type) VALUES ("SopranoSolo");
+INSERT INTO song_type (performance_type) VALUES ("VocalDuet");
+
+INSERT INTO song_title (title) VALUES ("Nachtmusik");
+INSERT INTO song_title (title) VALUES ("PianoSonataNo11");
+INSERT INTO song_title (title) VALUES ("Elsa'sDream");
+
 
 
 
