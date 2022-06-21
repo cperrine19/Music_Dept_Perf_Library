@@ -1,7 +1,8 @@
 spring:
   datasource:
-  url: jdbc:h2:mem:music;mode=MYSQL
- logging:
- 	level:
- 		root: warn
- 		'[com.promineotech]':debug
+   url: jdbc:h2:mem:music;mode=MYSQL
+
+logging:
+  level:
+   root: warn
+    '[com.promineotech]':debug
