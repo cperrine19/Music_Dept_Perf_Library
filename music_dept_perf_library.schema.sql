@@ -53,7 +53,7 @@ FOREIGN KEY (idcomposer) REFERENCES composer (idcomposer)
 
 CREATE TABLE performances (
 idperformances int NOT NULL AUTO_INCREMENT,
-date DATETIME,
+date VARCHAR,
 idperformer int NOT NULL, 
 idsong_title int NOT NULL, 
 idsong_type int NOT NULL, 
