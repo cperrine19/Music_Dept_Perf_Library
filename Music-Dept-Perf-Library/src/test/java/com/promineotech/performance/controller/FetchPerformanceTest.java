@@ -18,13 +18,13 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 
-import com.promineotech.performance.entity.Performance;
+import com.promineotech.performance.entity.Performances;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @Sql(scripts = {
-		"classpath:Music_Dept_Perf_Library_Data.sql",
-		"classpath:Music_Dept_Perf_Library_Schema.sql"},
+		"classpath:Music_Dept_Perf_Library_Schema.sql",
+		"classpath:Music_Dept_Perf_Library_Data.sql"},
 		config = @SqlConfig(encoding = "utf-8"))
 class FetchPerformanceTest {
 	
@@ -37,11 +37,11 @@ class FetchPerformanceTest {
 	@Test
 	void testThatPerformancesAreReturnedWhenADateIsSupplied() {
 		// Given: a valid date and URI
-		String date = "2020-01-11";
+		String date = "2017-06-15";
 		String uri = String.format("http://localhost:%d/music?date=%s", serverPort, date);
 		
 		// When: a connection is made to the URI
-		ResponseEntity<List<Performance>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+		ResponseEntity<List<Performances>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
 		
 		// Then: a success (OK 200) is returned
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);

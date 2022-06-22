@@ -1,181 +1,67 @@
--- MySQL Workbench Forward Engineering
+DROP TABLE IF EXISTS ensemble_performers;
+DROP TABLE IF EXISTS ensemble_performances;
+DROP TABLE IF EXISTS song_performances;
+DROP TABLE IF EXISTS performers;
+DROP TABLE IF EXISTS ensembles;
+DROP TABLE IF EXISTS songs;
+DROP TABLE IF EXISTS composers;
+DROP TABLE IF EXISTS performances;
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+CREATE TABLE performances (
+    performance_pk int NOT NULL AUTO_INCREMENT,
+    performance_name varchar(50),
+    performance_date date NOT NULL,
+    PRIMARY KEY (performance_pk)
+);
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema music_dept_perf_library
--- -----------------------------------------------------
+CREATE TABLE composers (
+    composer_pk int NOT NULL AUTO_INCREMENT,
+    first_name varchar(40) NOT NULL,
+    last_name varchar(40) NOT NULL,
+    PRIMARY KEY (composer_pk)
+);
 
--- -----------------------------------------------------
--- Schema music_dept_perf_library
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `music_dept_perf_library` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `music_dept_perf_library` ;
+CREATE TABLE songs (
+    song_pk int NOT NULL AUTO_INCREMENT,
+    composer_fk int NOT NULL,
+    song_title varchar(80) NOT NULL,
+    song_type enum('SOLO', 'DUET', 'TRIO', 'QUARTET', 'QUINTET') NOT NULL,
+    PRIMARY KEY (song_pk),
+    FOREIGN KEY (composer_fk) REFERENCES composers (composer_pk)
+);
 
--- -----------------------------------------------------
--- Table `music_dept_perf_library`.`composer`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `music_dept_perf_library`.`composer` (
-  `idcomposer` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(45) NULL DEFAULT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idcomposer`, `last_name`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+CREATE TABLE ensembles (
+    ensemble_pk int NOT NULL AUTO_INCREMENT,
+    ensemble_name varchar(50) NOT NULL,
+    member_size int NOT NULL,
+    PRIMARY KEY (ensemble_pk)
+);
 
+CREATE TABLE performers (
+    performer_pk int NOT NULL AUTO_INCREMENT,
+    first_name varchar(40) NOT NULL,
+    last_name varchar(40) NOT NULL,
+    instrument_voice_type enum('FLUTE', 'CLARINET', 'SAXOPHONE', 'TRUMPET', 'FRENCH_HORN', 'TROMBONE', 'EUPHONIUM', 'TUBA', 'PERCUSSION', 'SOPRANO', 'ALTO', 'TENOR', 'BASS') NOT NULL,
+    PRIMARY KEY (performer_pk)
+);
 
--- -----------------------------------------------------
--- Table `music_dept_perf_library`.`composer_song_title`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `music_dept_perf_library`.`composer_song_title` (
-  `song_title` VARCHAR(45) NOT NULL,
-  `idcomposer` INT NOT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
-  INDEX `idcomposer_idx` (`idcomposer` ASC) VISIBLE,
-  INDEX `last_name_idx` (`last_name` ASC) VISIBLE,
-  CONSTRAINT `idcomposer`
-    FOREIGN KEY (`idcomposer`)
-    REFERENCES `music_dept_perf_library`.`composer` (`idcomposer`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `last_name`
-    FOREIGN KEY (`last_name`)
-    REFERENCES `music_dept_perf_library`.`composer` (`last_name`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+CREATE TABLE song_performances (
+    performance_fk int NOT NULL,
+    song_fk int NOT NULL,
+    FOREIGN KEY (performance_fk) REFERENCES performances (performance_pk),
+    FOREIGN KEY (song_fk) REFERENCES songs (song_pk)
+);
 
+CREATE TABLE ensemble_performances (
+    performance_fk int NOT NULL,
+    ensemble_fk int NOT NULL,
+    FOREIGN KEY (performance_fk) REFERENCES performances (performance_pk),
+    FOREIGN KEY (ensemble_fk) REFERENCES ensembles (ensemble_pk)
+);
 
--- -----------------------------------------------------
--- Table `music_dept_perf_library`.`performer`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `music_dept_perf_library`.`performer` (
-  `idperformer` INT NOT NULL AUTO_INCREMENT,
-  `artist_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`artist_name`),
-  UNIQUE INDEX `idperformer` (`idperformer` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `music_dept_perf_library`.`song_title`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `music_dept_perf_library`.`song_title` (
-  `idsong_title` INT NOT NULL AUTO_INCREMENT,
-  `song_title` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`song_title`),
-  UNIQUE INDEX `idsong_title` (`idsong_title` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `music_dept_perf_library`.`performance_type`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `music_dept_perf_library`.`performance_type` (
-  `idperformance_type` INT NOT NULL AUTO_INCREMENT,
-  `performance_type` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`performance_type`),
-  UNIQUE INDEX `idsong_type` (`idperformance_type` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `music_dept_perf_library`.`song_title_type`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `music_dept_perf_library`.`song_title_type` (
-  `song_title` VARCHAR(45) NOT NULL,
-  `performance_type` VARCHAR(45) NULL DEFAULT NULL,
-  `idcomposer` INT NOT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
-  INDEX `song_title_idx` (`song_title` ASC) VISIBLE,
-  INDEX `performance_type_idx` (`performance_type` ASC) VISIBLE,
-  INDEX `idcomposer_idx` (`idcomposer` ASC) VISIBLE,
-  INDEX `last_name_idx` (`last_name` ASC) VISIBLE,
-  CONSTRAINT `song_title`
-    FOREIGN KEY (`song_title`)
-    REFERENCES `music_dept_perf_library`.`song_title` (`song_title`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `performance_type`
-    FOREIGN KEY (`performance_type`)
-    REFERENCES `music_dept_perf_library`.`performance_type` (`performance_type`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `idcomposer`
-    FOREIGN KEY (`idcomposer`)
-    REFERENCES `music_dept_perf_library`.`composer` (`idcomposer`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `last_name`
-    FOREIGN KEY (`last_name`)
-    REFERENCES `music_dept_perf_library`.`composer` (`last_name`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `music_dept_perf_library`.`performances`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `music_dept_perf_library`.`performances` (
-  `idperformances` INT NOT NULL AUTO_INCREMENT,
-  `performance_date` DATE NOT NULL,
-  `artist_name` VARCHAR(45),
-  `song_title` VARCHAR(45),
-  `performance_type` VARCHAR(45),
-  `idcomposer` INT,
-  `last_name` VARCHAR(45),
-  PRIMARY KEY (`idperformances`),
-  UNIQUE INDEX `idperformances_UNIQUE` (`idperformances` ASC) VISIBLE,
-  INDEX `artist_name_idx` (`artist_name` ASC) VISIBLE,
-  INDEX `song_title_idx` (`song_title` ASC) VISIBLE,
-  INDEX `idcomposer_idx` (`idcomposer` ASC) VISIBLE,
-  INDEX `last_name_idx` (`last_name` ASC) VISIBLE,
-  INDEX `performance_type_idx` (`performance_type` ASC) VISIBLE,
-  CONSTRAINT `artist_name`
-    FOREIGN KEY (`artist_name`)
-    REFERENCES `music_dept_perf_library`.`performer` (`artist_name`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `song_title`
-    FOREIGN KEY (`song_title`)
-    REFERENCES `music_dept_perf_library`.`song_title` (`song_title`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `idcomposer`
-    FOREIGN KEY (`idcomposer`)
-    REFERENCES `music_dept_perf_library`.`composer` (`idcomposer`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `last_name`
-    FOREIGN KEY (`last_name`)
-    REFERENCES `music_dept_perf_library`.`composer` (`last_name`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `performance_type`
-    FOREIGN KEY (`performance_type`)
-    REFERENCES `music_dept_perf_library`.`performance_type` (`performance_type`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+CREATE TABLE ensemble_performers (
+    ensemble_fk int NOT NULL,
+    performer_fk int NOT NULL,
+    FOREIGN KEY (ensemble_fk) REFERENCES ensembles (ensemble_pk),
+    FOREIGN KEY (performer_fk) REFERENCES performers (performer_pk)
+);
