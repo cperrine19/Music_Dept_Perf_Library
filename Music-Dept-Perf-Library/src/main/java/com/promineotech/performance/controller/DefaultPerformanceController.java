@@ -19,7 +19,7 @@ public class DefaultPerformanceController implements PerformanceController {
 
 	@Override
 	public List<Performances> fetchPerformances(String date) {
-		log.debug("date={}", date);
+		log.debug("The fetchPeformances method was called with date={}", date);
 		return performanceService.fetchPerformances(date);
 	}
 

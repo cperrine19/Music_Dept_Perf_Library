@@ -19,7 +19,7 @@ public class DefaultPerformanceService implements PerformanceService {
 	private PerformanceDao performanceDao;
 
 	public List<Performances> fetchPerformances(String date) {
-		log.info("The fetchPeformances method was called with date={}", date);
+		log.debug("The fetchPeformances method was called with date={}", date);
 		List<Performances> performances = performanceDao.fetchPerformances(date);
 		
 		if (performances.isEmpty()) {
