@@ -5,4 +5,4 @@ spring:
 logging:
   level:
    root: warn
-    '[com.promineotech]':debug
+   '[com.promineotech]': debug

@@ -2,10 +2,10 @@ package com.promineotech.performance.service;
 
 import java.util.List;
 
-import com.promineotech.performance.entity.Performance;
+import com.promineotech.performance.entity.Performances;
 
 public interface PerformanceService {
 
-	List<Performance> fetchPerformances(String date);
+	List<Performances> fetchPerformances(String date);
 
 }

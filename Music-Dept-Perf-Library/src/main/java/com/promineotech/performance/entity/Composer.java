@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class Composer {
-	private int idcomposer;
+	private int composer_pk;
 	private String first_name;
 	private String last_name;
 }
