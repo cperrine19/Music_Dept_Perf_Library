@@ -2,6 +2,7 @@ package com.promineotech.performance.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,7 @@ class FetchPerformanceTest {
 	void testThatPerformancesAreReturnedWhenADateIsSupplied() {
 		// Given: a valid date and URI
 		String date = "2017-06-15";
-		String uri = String.format("http://localhost:%d/music?date=%s", serverPort, date);
+		String uri = String.format("http://localhost:%d/performances?date=%s", serverPort, date);
 		
 		// When: a connection is made to the URI
 		ResponseEntity<List<Performances>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
@@ -47,7 +48,27 @@ class FetchPerformanceTest {
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 		
 		// And: the actual list returned is the same as the expected list
+		List<Performances> expected = buildExpected();
+		assertThat(response.getBody()).isEqualTo(expected);
+	}
+
+	
+	protected List<Performances> buildExpected() {
+		List<Performances> list = new LinkedList<>();
 		
+		// @formatter:off
+		list.add(Performances.builder()
+			.performance_name(null)
+			.performance_date("2017-06-15")
+			.build());
+		
+		list.add(Performances.builder()
+			.performance_name(null)
+			.performance_date("2017-06-15")
+			.build());
+		// @formatter:on
+		
+		return list;
 	}
 
 }
