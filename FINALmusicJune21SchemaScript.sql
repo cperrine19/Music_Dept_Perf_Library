@@ -22,7 +22,7 @@ performance_type VARCHAR(45) NOT NULL,
 PRIMARY KEY (idperformance_type)
 );
 
-CREATE TABLE song_title 
+CREATE TABLE song_title (
 idsong_title int NOT NULL AUTO_INCREMENT,
 song_title VARCHAR(45) NOT NULL,
 PRIMARY KEY (idsong_title)
@@ -43,7 +43,7 @@ idperformance_type int,
 idcomposer int,
 PRIMARY KEY (idperformances),
 FOREIGN KEY (idperformer) REFERENCES performer (ideperformer),
-FOREIGN KEY (id_song_title) REFERENCES song_title (id_song_title),
+FOREIGN KEY (idsong_title) REFERENCES song_title (idsong_title),
 FOREIGN KEY (idperformance_type) REFERENCES performance_type (idperformance_type),
 FOREIGN KEY (idcomposer) REFERENCES composer (idcomposer)
 );
