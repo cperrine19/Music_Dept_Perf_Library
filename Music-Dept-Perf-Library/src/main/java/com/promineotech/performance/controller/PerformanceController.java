@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.promineotech.performance.entity.Performances;
+import com.promineotech.performance.entity.Performance;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -28,7 +28,7 @@ public interface PerformanceController {
 						description = "A list of performances is returned",
 						content = @Content(
 								mediaType = "application/json",
-								schema = @Schema(implementation = Performances.class))),
+								schema = @Schema(implementation = Performance.class))),
 				@ApiResponse(
 						responseCode = "400",
 						description = "The request parameters are invalid",
@@ -54,5 +54,5 @@ public interface PerformanceController {
 
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	List<Performances> fetchPerformances(@RequestParam String date);
+	List<Performance> fetchPerformances(@RequestParam String date);
 }

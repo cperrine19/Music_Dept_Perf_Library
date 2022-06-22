@@ -2,13 +2,10 @@ package com.promineotech.performance.dao;
 
 import java.util.List;
 
-import com.promineotech.performance.entity.Performances;
+import com.promineotech.performance.entity.Performance;
 
-public class PerformanceDao {
-
-	public List<Performances> fetchPerformances(String date) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+public interface PerformanceDao {
+	
+	List<Performance> fetchPerformances(String date);
+	
 }
