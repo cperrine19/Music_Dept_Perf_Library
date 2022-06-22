@@ -42,7 +42,7 @@ idsong_title int,
 idperformance_type int,
 idcomposer int,
 PRIMARY KEY (idperformances),
-FOREIGN KEY (idperformer) REFERENCES performer (ideperformer),
+FOREIGN KEY (idperformer) REFERENCES performer (idperformer),
 FOREIGN KEY (idsong_title) REFERENCES song_title (idsong_title),
 FOREIGN KEY (idperformance_type) REFERENCES performance_type (idperformance_type),
 FOREIGN KEY (idcomposer) REFERENCES composer (idcomposer)
