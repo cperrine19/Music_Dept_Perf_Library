@@ -3,7 +3,6 @@ package com.promineotech.performance.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.promineotech.performance.Performance;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -56,7 +56,7 @@ class CreatePerformanceTest {
 			assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 			assertThat(response.getBody()).isNotNull();
 			Performances performances = response.getBody();
-			assertThat(performances.getPerformance_name()).isEqualTo("Johns Senior Recital"); //not sure this is correct format
+			assertThat(performances.getPerformance_name()).isEqualTo("Johns Senior Recital"); 
 			assertThat(performances.getPerformance_date()).isEqualTo("2020-02-02");
 			
 			//step2j
@@ -67,10 +67,10 @@ class CreatePerformanceTest {
 	protected String createPerformanceBody() {
 		// @formatter: off
 		return "{\n"
-			+ "  \"performance_name\":\"Johns Senior Recital\",\n"
-			+ "  \"performance_date\":\"2020-02-02\",\n"
-			+ "  ]\n"
-			+ "}";
+				+ "  \"performance_name\":\"Johns Senior Recital\",\n"
+				+ "  \"performance_date\":\"2020-02-02\"\n"
+				+ "  \n"
+				+ "}";
 		// @formatter:on
 		
 	}
