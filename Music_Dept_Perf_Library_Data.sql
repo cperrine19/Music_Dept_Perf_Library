@@ -27,6 +27,11 @@ INSERT INTO songs (composer_fk, song_title, song_type) VALUES ('1','Fur Elise', 
 INSERT INTO songs (composer_fk, song_title, song_type) VALUES ('3', 'Twinkle Twinkle', 'Duet');
 INSERT INTO songs (composer_fk, song_title, song_type) VALUES ('4', 'Elsas Dream', 'Trio');
 
+INSERT INTO performances (performance_name, performance_date) VALUES ('Jordans Senior Recital', '2019-05-05');
+INSERT INTO performances (performance_name, performance_date) VALUES ('Jordans Senior Recital', '2019-05-05'); 
+INSERT INTO performances (performance_name, performance_date) VALUES ('Chelseas Senior Recital', '2011-05-05'); 
+
+
 
 
 
