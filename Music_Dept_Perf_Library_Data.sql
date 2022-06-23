@@ -18,6 +18,15 @@ INSERT INTO performances (performance_date) VALUES ('2019-06-15');
 INSERT INTO performances (performance_date) VALUES ('2020-06-15');
 INSERT INTO performances (performance_date) VALUES ('2020-02-02');
 
+INSERT INTO ensembles (ensemble_name, member_size) VALUES ('Duet1', '2');
+INSERT INTO ensembles (ensemble_name, member_size) VALUES ('Duet2', '2');
+INSERT INTO ensembles (ensemble_name, member_size) VALUES ('Trio1', '3');
+INSERT INTO ensembles (ensemble_name, member_size) VALUES ('Trio2', '3');
+
+INSERT INTO songs (composer_fk, song_title, song_type) VALUES ('1','Fur Elise', 'Solo');
+INSERT INTO songs (composer_fk, song_title, song_type) VALUES ('3', 'Twinkle Twinkle', 'Duet');
+INSERT INTO songs (composer_fk, song_title, song_type) VALUES ('4', 'Elsas Dream', 'Trio');
+
 
 
 
