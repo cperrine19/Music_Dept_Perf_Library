@@ -23,18 +23,21 @@ public class DefaultPerformanceDao implements PerformanceDao {
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<Performances> fetchPerformances(String date) {
-		log.debug("The fetchPeformances method was called with date={}", date);
+	public List<Performances> fetchPerformances(String date, String name) {
+		log.info("The fetchPeformances method was called with date={} and name={}", date, name);
 		
 		// formatter:off
 		String sql = ""
 			+ "SELECT * "
 			+ "FROM performances "
-			+ "WHERE performance_date = :performance_date";
+			+ "WHERE performance_date = :performance_date OR performance_name = :performance_name";
 		// formatter:on
 		
 		Map<String, Object> params = new HashMap<>();
 		params.put("performance_date", date);
+		params.put("performance_name", name);
+		
+		// ((date != null) ? date : "")
 		
 		return jdbcTemplate.query(sql, params, new RowMapper<>() {
 			
