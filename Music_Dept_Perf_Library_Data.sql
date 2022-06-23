@@ -29,7 +29,9 @@ INSERT INTO songs (composer_fk, song_title, song_type) VALUES ('4', 'Elsas Dream
 
 INSERT INTO performances (performance_name, performance_date) VALUES ('Jordans Senior Recital', '2019-05-05');
 INSERT INTO performances (performance_name, performance_date) VALUES ('Jordans Senior Recital', '2019-05-05'); 
-INSERT INTO performances (performance_name, performance_date) VALUES ('Chelseas Senior Recital', '2011-05-05'); 
+INSERT INTO performances (performance_name, performance_date) VALUES ('Chelseas Senior Recital', '2011-05-05');
+UPDATE `music_dept_perf_library`.`performances` SET `performance_name` = 'Johns Senior Recital' WHERE (`performance_pk` = '6');
+
 
 
 
