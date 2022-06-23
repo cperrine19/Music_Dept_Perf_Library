@@ -18,12 +18,13 @@ public class DefaultPerformanceService implements PerformanceService {
 	@Autowired
 	private PerformanceDao performanceDao;
 
-	public List<Performances> fetchPerformances(String date) {
-		log.debug("The fetchPeformances method was called with date={}", date);
-		List<Performances> performances = performanceDao.fetchPerformances(date);
+	@Override
+	public List<Performances> fetchPerformances(String date, String name) {
+		log.debug("The fetchPeformances method was called with date={} and name={}", date, name);
+		List<Performances> performances = performanceDao.fetchPerformances(date, name);
 		
 		if (performances.isEmpty()) {
-			String msg = String.format("No performances found with date={}", date);
+			String msg = String.format("No performances found with date=%s and name=%s", date, name);
 			throw new NoSuchElementException(msg);
 		}
 		

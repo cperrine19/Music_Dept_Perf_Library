@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/music
+    url: jdbc:mysql://localhost:3306/music_dept_perf_library
     username: music
     password: music

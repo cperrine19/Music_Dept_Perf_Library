@@ -48,12 +48,28 @@ class FetchPerformanceTest {
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 		
 		// And: the actual list returned is the same as the expected list
-		List<Performances> expected = buildExpected();
+		List<Performances> expected = buildExpectedPerformanceDate();
 		assertThat(response.getBody()).isEqualTo(expected);
 	}
 
+	@Test
+	void testThatPerformancesAreReturnedWhenAPerformanceNameIsSupplied() {
+		// Given: a valid date and URI
+		String name = "Jordans Senior Recital";
+		String uri = String.format("http://localhost:%d/performances?name=%s", serverPort, name);
+		
+		// When: a connection is made to the URI
+		ResponseEntity<List<Performances>> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+		
+		// Then: a success (OK 200) is returned
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+		
+		// And: the actual list returned is the same as the expected list
+		List<Performances> expected = buildExpectedPerformanceName();
+		assertThat(response.getBody()).isEqualTo(expected);
+	}
 	
-	protected List<Performances> buildExpected() {
+	protected List<Performances> buildExpectedPerformanceDate() {
 		List<Performances> list = new LinkedList<>();
 		
 		// @formatter:off
@@ -65,6 +81,24 @@ class FetchPerformanceTest {
 		list.add(Performances.builder()
 			.performance_name(null)
 			.performance_date("2017-06-15")
+			.build());
+		// @formatter:on
+		
+		return list;
+	}
+	
+	protected List<Performances> buildExpectedPerformanceName() {
+		List<Performances> list = new LinkedList<>();
+		
+		// @formatter:off
+		list.add(Performances.builder()
+			.performance_name("Jordans Senior Recital")
+			.performance_date("2019-05-05")
+			.build());
+		
+		list.add(Performances.builder()
+			.performance_name("Jordans Senior Recital")
+			.performance_date("2019-05-05")
 			.build());
 		// @formatter:on
 		

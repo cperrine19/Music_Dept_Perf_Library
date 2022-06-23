@@ -21,7 +21,7 @@ public interface PerformanceController {
 	// @formatter:off
 	@Operation(
 		summary = "Returns a list of performances",
-		description = "Returns a list of performances given a specific date",
+		description = "Returns a list of performances given specific parameters",
 		responses = {
 				@ApiResponse(
 						responseCode = "200",
@@ -46,13 +46,23 @@ public interface PerformanceController {
 				@Parameter(
 						name = "date",
 						allowEmptyValue = false,
-						required = true,
-						description = "The specified date (i.e. '2020-01-11')")
+						required = false,
+						description = "The specified date (i.e. '2020-01-11')"),
+				@Parameter(
+						name = "name",
+						allowEmptyValue = false,
+						required = false,
+						description = "The name of the performance (i.e. John's Senior Recital)")
 		}
 	)
-	// @formatter:on
 
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	List<Performances> fetchPerformances(@RequestParam String date);
+	List<Performances> fetchPerformances(
+			@RequestParam(required = false) 
+				String date,
+			@RequestParam(required = false)
+				String name);
+	
+	// @formatter:on
 }
