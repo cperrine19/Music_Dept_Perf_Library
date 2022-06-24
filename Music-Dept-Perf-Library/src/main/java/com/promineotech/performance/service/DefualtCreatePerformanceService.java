@@ -19,21 +19,19 @@ public class DefualtCreatePerformanceService implements CreatePerformanceService
 	@Override
 	public Performances createPerformance(CreatePerformance create) {
 		//step 8c in week16 homework
-		Performances performance_name = getPerformanceName(create);
-		Performances performance_date = getPerformanceDate(create);
-		return createPerformanceDao.savePerformance("performance_date", "performance_name"); 
+		String performance_name = create.getPerformance_name();
+		String performance_date = create.getPerformance_date();
+		return createPerformanceDao.savePerformance(performance_date, performance_name); 
 
 		
 		
 	}
 
-	private Performances getPerformanceDate(CreatePerformance create) {
-		// TODO Auto-generated method stub
+	private String getPerformanceDate(CreatePerformance create) {
 		return null;
 	}
 
-	private Performances getPerformanceName(CreatePerformance create) {
-		// TODO Auto-generated method stub
+	private String getPerformanceName(CreatePerformance create) {
 		return null;
 	}
 }

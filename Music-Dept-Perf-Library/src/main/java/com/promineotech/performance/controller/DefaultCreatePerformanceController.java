@@ -21,7 +21,7 @@ public class DefaultCreatePerformanceController implements CreatePerformanceCont
 	private CreatePerformanceService createPerformanceService;
 
 	@Override
-	public Performances createPerformance(@Valid CreatePerformance create) {
+	public Performances createPerformance(CreatePerformance create) {
 		// TODO Auto-generated method stub
 		log.debug("createPerformance:{}", create);
 		return createPerformanceService.createPerformance(create); //check this-
