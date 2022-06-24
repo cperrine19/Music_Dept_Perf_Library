@@ -1,5 +1,7 @@
 package com.promineotech.performance.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +19,7 @@ public class DefaultDeletePerformanceService implements DeletePerformanceService
 	
 	@Transactional
 	@Override
-	public Performances deletePerformance(DeletePerformance deletePerf) {
+	public List<Performances> deletePerformance(DeletePerformance deletePerf) {
 		String performance_name = deletePerf.getPerformance_name();
 		String performance_date = deletePerf.getPerformance_date();
 		return deletePerformanceDao.saveDeletePerf(performance_date, performance_name);

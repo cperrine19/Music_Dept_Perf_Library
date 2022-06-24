@@ -1,5 +1,7 @@
 package com.promineotech.performance.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ public class DefaultDeletePerformanceController implements DeletePerformanceCont
 	private DeletePerformanceService deletePerformanceService;
 
 	@Override
-	public Performances deletePerformance(@Valid DeletePerformance deletePerf) {
+	public List<Performances> deletePerformance(@Valid DeletePerformance deletePerf) {
 		log.debug("deletePerformance:{}", deletePerf);
 		return deletePerformanceService.deletePerformance(deletePerf);
 	}

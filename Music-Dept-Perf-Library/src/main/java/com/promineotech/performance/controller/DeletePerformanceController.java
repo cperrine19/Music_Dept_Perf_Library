@@ -1,5 +1,7 @@
 package com.promineotech.performance.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -22,7 +24,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 
 @Validated
-@RequestMapping("/deletePerformances")
+@RequestMapping("/deletePerformance")
 
 @OpenAPIDefinition(info = @Info(title = "Create a Performance"), servers = {
 		@Server(url = "http://localhost:8080", description = "Local server.") })
@@ -68,8 +70,8 @@ public interface DeletePerformanceController {
 
 	
 	@DeleteMapping
-	@ResponseStatus(HttpStatus.OK)
-	Performances deletePerformance (@Valid @RequestBody DeletePerformance deletePerf); // check this
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	List<Performances> deletePerformance (@Valid @RequestBody DeletePerformance deletePerf); // check this
  	// @formatter:on
 	
 	//deletePerformance is the same as createOrder in Jeeps

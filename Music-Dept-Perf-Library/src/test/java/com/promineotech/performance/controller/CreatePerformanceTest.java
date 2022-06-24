@@ -69,7 +69,7 @@ class CreatePerformanceTest {
 		return "{\n"
 			+ "  \"performance_name\":\"Johns Senior Recital\",\n"
 			+ "  \"performance_date\":\"2020-02-02\",\n"
-			+ "  ]\n"
+			+ "  \n"
 			+ "}";
 		// @formatter:on
 		
