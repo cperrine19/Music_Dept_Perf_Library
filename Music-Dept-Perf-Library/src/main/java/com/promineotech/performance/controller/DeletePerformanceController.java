@@ -4,12 +4,12 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.promineotech.performance.entity.CreatePerformance;
+import com.promineotech.performance.entity.DeletePerformance;
 import com.promineotech.performance.entity.Performances;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -18,26 +18,24 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 
 @Validated
-@RequestMapping("/createPerformances") //step 3 in week16 homework
+@RequestMapping("/deletePerformances")
 
 @OpenAPIDefinition(info = @Info(title = "Create a Performance"), servers = {
-@Server(url = "http://localhost:8080", description = "Local server.") })
+		@Server(url = "http://localhost:8080", description = "Local server.") })
 
-
-public interface CreatePerformanceController {
+public interface DeletePerformanceController {
 	// @formatter:off
 	@Operation(
-		summary = "Create a performance",
-		description = "Returns the created performance",
+		summary = "Delete a performance",
+		description = "Deletes a performance",
 		responses = {
 				@ApiResponse(
-						responseCode = "201",
-						description = "The created performance is returned",
+						responseCode = "200",
+						description = "The performance is deleted",
 						content = @Content(
 								mediaType = "application/json",
 								schema = @Schema(implementation = Performances.class))),
@@ -56,18 +54,26 @@ public interface CreatePerformanceController {
 		},
 		parameters = {
 				@Parameter(
-						name = "createPerformance", //double check this
+						name = "Insert a Performance Date",
 						allowEmptyValue = false,
-						required = true,
-						description = "The created performances as JSON")
+						required = false,
+						description = "The specified date (in this format: 2020-01-11)"),
+				@Parameter(
+						name = "Insert a Performance Name",
+						allowEmptyValue = false,
+						required = false,
+						description = "The name of the performance (i.e. Johns Senior Recital)")
 		}
 	)
-	// @formatter:on
 
-	@PostMapping
-	@ResponseStatus(code = HttpStatus.CREATED)
-	Performances createPerformance (@Valid @RequestBody CreatePerformance create); //check this
-	//createPerformance is the same as createOrder in Jeeps
-	//CreatePerformance is the same as OrderRequest in Jeeps
-	//create is the same as request in Jeeps
-}
+	
+	@DeleteMapping
+	@ResponseStatus(HttpStatus.OK)
+	Performances deletePerformance (@Valid @RequestBody DeletePerformance deletePerf); // check this
+ 	// @formatter:on
+	
+	//deletePerformance is the same as createOrder in Jeeps
+	//DeletePerformance is the same as OrderRequest in Jeeps
+	//deletePerf is the same as request in Jeeps
+	}
+
