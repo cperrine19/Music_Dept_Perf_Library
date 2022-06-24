@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.promineotech.performance.dao.PerformanceDao;
 import com.promineotech.performance.entity.Performances;
@@ -18,6 +19,7 @@ public class DefaultPerformanceService implements PerformanceService {
 	@Autowired
 	private PerformanceDao performanceDao;
 
+	@Transactional
 	@Override
 	public List<Performances> fetchPerformances(String date, String name) {
 		log.debug("The fetchPeformances method was called with date={} and name={}", date, name);

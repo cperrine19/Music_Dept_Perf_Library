@@ -1,7 +1,5 @@
 package com.promineotech.performance.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +20,6 @@ public class DefaultCreatePerformanceController implements CreatePerformanceCont
 
 	@Override
 	public Performances createPerformance(CreatePerformance create) {
-		// TODO Auto-generated method stub
 		log.debug("createPerformance:{}", create);
 		return createPerformanceService.createPerformance(create); //check this-
 	}
