@@ -27,11 +27,11 @@ public class DefualtCreatePerformanceService implements CreatePerformanceService
 		
 	}
 
-	private String getPerformanceDate(CreatePerformance create) {
-		return null;
-	}
+	//private String getPerformanceDate(CreatePerformance create) {
+		//return null;
+	//}
 
-	private String getPerformanceName(CreatePerformance create) {
-		return null;
-	}
+	//private String getPerformanceName(CreatePerformance create) {
+		//return null;
+	//}
 }

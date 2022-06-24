@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,17 +52,23 @@ public interface CreatePerformanceController {
 		},
 		parameters = {
 				@Parameter(
-						name = "createPerformance", //double check this
+						name = "Create a Performance Date",
 						allowEmptyValue = false,
-						required = true,
-						description = "The created performances as JSON")
+						required = false,
+						description = "The specified date (in this format: 2020-01-11)"),
+				@Parameter(
+						name = "Create a Performance Name",
+						allowEmptyValue = false,
+						required = false,
+						description = "The name of the performance (i.e. Johns Senior Recital)")
 		}
 	)
-	// @formatter:on
 
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	Performances createPerformance (@Valid @RequestBody CreatePerformance create); //check this
+	// @formatter:on
+	
 	//createPerformance is the same as createOrder in Jeeps
 	//CreatePerformance is the same as OrderRequest in Jeeps
 	//create is the same as request in Jeeps

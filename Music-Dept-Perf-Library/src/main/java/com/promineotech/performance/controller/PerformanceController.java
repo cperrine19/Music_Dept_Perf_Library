@@ -52,7 +52,7 @@ public interface PerformanceController {
 						name = "name",
 						allowEmptyValue = false,
 						required = false,
-						description = "The name of the performance (i.e. John's Senior Recital)")
+						description = "The name of the performance (i.e. Johns Senior Recital)")
 		}
 	)
 
