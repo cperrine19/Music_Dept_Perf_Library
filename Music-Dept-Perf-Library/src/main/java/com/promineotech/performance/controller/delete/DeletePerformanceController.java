@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @Validated
 @RequestMapping("/deletePerformance")
 
-@OpenAPIDefinition(info = @Info(title = "Create a Performance"), servers = {
+@OpenAPIDefinition(info = @Info(title = "Delete a Performance"), servers = {
 		@Server(url = "http://localhost:8080", description = "Local server.") })
 
 public interface DeletePerformanceController {
