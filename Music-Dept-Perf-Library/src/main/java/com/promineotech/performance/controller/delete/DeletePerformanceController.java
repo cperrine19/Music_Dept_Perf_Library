@@ -36,8 +36,8 @@ public interface DeletePerformanceController {
 		description = "Deletes a performance",
 		responses = {
 				@ApiResponse(
-						responseCode = "200",
-						description = "The performance is deleted",
+						responseCode = "202", //changed from 200
+						description = "Accepted: The performance is deleted",
 						content = @Content(
 								mediaType = "application/json",
 								schema = @Schema(implementation = Performances.class))),
