@@ -46,8 +46,8 @@ public class DefaultCreatePerformanceDao implements CreatePerformanceDao {
 		
 		SqlParams params = new SqlParams();
 		params.sql = sql;
-		params.source.addValue("performance_date", performance_date); //stuck here
-		params.source.addValue("performance_name", performance_name); //stuck here
+		params.source.addValue("performance_date", performance_date); 
+		params.source.addValue("performance_name", performance_name); 
 		
 		return params;
 
