@@ -8,55 +8,49 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.promineotech.performance.entity.Performances;
+import com.promineotech.performance.entity.Performers;
 
 @Component
-public class DefaultCreatePerformanceDao implements CreatePerformanceDao {
-	
+public class DefaultCreatePerformersDao implements CreatePerformersDao {
+
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
 	@Transactional
 	@Override
-	public Performances savePerformance(String performance_date, String performance_name) {
-		SqlParams params =
-		generateInsertSql(performance_date, performance_name);
-		
-		KeyHolder keyHolder = new GeneratedKeyHolder(); //step 15bii
+	public Performers savePerformer(String first_name, String last_name) {
+		SqlParams params = generateInsertSql(first_name, last_name);
+
+		KeyHolder keyHolder = new GeneratedKeyHolder(); // step 15bii
 		jdbcTemplate.update(params.sql, params.source, keyHolder);
-		
-		
-		
+
 		// @formatter:off
-				return Performances.builder()
-						.performance_date(performance_date)
-						.performance_name(performance_name)
-						.build();
+		return Performers.builder()
+				.first_name(first_name)
+				.last_name(last_name)
+				.build();
 		// @formatter:on;
 	}
-	private SqlParams generateInsertSql(String performance_date, String performance_name) {
+
+	private SqlParams generateInsertSql(String first_name, String last_name) {
 		// @formatter:off
 		String sql = ""
-				+ "INSERT INTO performances ("
-				+ "performance_date, :performance_name"
+				+ "INSERT INTO performers ("
+				+ "first_name, last_name"
 				+") VALUES ("
-				+ ":performance_date, :performance_name"
+				+ ":first_name, :last_name"
 				+ ")";
 		// @formatter:on
-		
 		SqlParams params = new SqlParams();
 		params.sql = sql;
-		params.source.addValue("performance_date", performance_date); //stuck here
-		params.source.addValue("performance_name", performance_name); //stuck here
-		
-		return params;
+		params.source.addValue("first_name", first_name);
+		params.source.addValue("last_name", last_name);
 
+		return params;
 	}
+
 	class SqlParams {
 		String sql;
 		MapSqlParameterSource source = new MapSqlParameterSource();
 	}
-	
-	}
-
-
+}
